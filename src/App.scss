@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../public/fonts/Montserrat.ttf");
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Montserrat";
+}
+
+body {
+  font-size: 1.6rem;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
