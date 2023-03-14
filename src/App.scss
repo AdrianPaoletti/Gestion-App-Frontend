@@ -21,3 +21,31 @@ body {
   padding: 1.5rem;
   box-sizing: border-box;
 }
+
+.App {
+  display: flex;
+  justify-content: space-between;
+}
+
+h1 {
+  display: block;
+  white-space: nowrap;
+  font-family: monospace;
+  padding-right: 1rem;
+  border-right: 0.3rem solid;
+  width: 23ch;
+  overflow: hidden;
+  animation: typing 2s steps(23), blink 0.5s infinite step-end alternate;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
