@@ -1,46 +1,47 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { Button } from "@mui/material";
 import "./App.scss";
 
-function App() {
-  const [isReadyForInstall, setIsReadyForInstall] = useState(false);
-  const [eventPrompted, setEventPrompted] = useState<any>();
-  useEffect(() => {
-    window.addEventListener("beforeinstallprompt", (event) => {
-      // Prevent the mini-infobar from appearing on mobile.
-      event.preventDefault();
-      console.log("👍", "beforeinstallprompt", event);
-      // Stash the event so it can be triggered later.
-      setEventPrompted(event);
-      // Remove the 'hidden' class from the install button container.
-      setIsReadyForInstall(true);
-    });
-  }, []);
+const [isReadyForInstall, setIsReadyForInstall] = useState<boolean>(false);
+const [deferredPrompt, setDeferredPrompt] = useState<any>();
 
-  async function downloadApp() {
-    console.log("👍", "butInstall-clicked");
-    const promptEvent = eventPrompted;
-    if (!promptEvent) {
-      // The deferred prompt isn't available.
-      console.log("oops, no prompt event guardado en window");
-      return;
-    }
-    // Show the install prompt.
-    promptEvent.prompt();
-    // Log the result
-    const result = await promptEvent.userChoice;
-    console.log("👍", "userChoice", result);
-    // Reset the deferred prompt variable, since
-    // prompt() can only be called once.
-    setEventPrompted(null);
-    // Hide the install button.
-    setIsReadyForInstall(false);
+useEffect(() => {
+  window.addEventListener("beforeinstallprompt", (event: Event) => {
+    // Prevent the mini-infobar from appearing on mobile.
+    event.preventDefault();
+    console.log("👍", "beforeinstallprompt", event);
+    // Stash the event so it can be triggered later.
+    setDeferredPrompt(event);
+    // Remove the 'hidden' class from the install button container.
+    setIsReadyForInstall(true);
+  });
+}, []);
+
+async function downloadApp() {
+  console.log("👍", "butInstall-clicked");
+  const promptEvent = deferredPrompt;
+  if (!promptEvent) {
+    // The deferred prompt isn't available.
+    console.log("oops, no prompt event guardado en window");
+    return;
   }
+  // Show the install prompt.
+  promptEvent.prompt();
+  // Log the result
+  const result = await promptEvent.userChoice;
+  console.log("👍", "userChoice", result);
+  // Reset the deferred prompt variable, since
+  // prompt() can only be called once.
+  setDeferredPrompt(null);
+  // Hide the install button.
+  setIsReadyForInstall(false);
+}
 
+function App() {
   return (
     <div className="App">
-      <h1>Hello Administrator... </h1>
+      <h1>Hello Admin ... </h1>
       {isReadyForInstall && (
         <Button variant="contained" onClick={downloadApp}>
           Donwload app
