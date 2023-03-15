@@ -4,79 +4,10 @@
   "dir": "ltr",
   "display_override": ["standalone", "fullscreen"],
   "display": "standalone",
-  "icons": [
     {
-      "src": "media/logo20.png",
+      "src": "media/logo90.png",
       "type": "image/png",
-      "sizes": "20x20"
-    },
-    {
-      "src": "media/logo29.png",
-      "type": "image/png",
-      "sizes": "29x29",
-      "purpose": "any "
-    },
-    {
-      "src": "media/logo36.png",
-      "type": "image/png",
-      "sizes": "36x36"
-    },
-    {
-      "src": "media/logo40.png",
-      "type": "image/png",
-      "sizes": "40x40"
-    },
-    {
-      "src": "media/logo48.png",
-      "type": "image/png",
-      "sizes": "48x48"
-    },
-    {
-      "src": "media/logo50.png",
-      "type": "image/png",
-      "sizes": "50x50"
-    },
-    {
-      "src": "media/logo57.png",
-      "type": "image/png",
-      "sizes": "57x57"
-    },
-    {
-      "src": "media/logo58.png",
-      "type": "image/png",
-      "sizes": "58x58"
-    },
-    {
-      "src": "media/logo60.png",
-      "type": "image/png",
-      "sizes": "60x60"
-    },
-    {
-      "src": "media/logo72.png",
-      "type": "image/png",
-      "sizes": "72x72"
-    },
-    {
-      "src": "media/logo76.png",
-      "type": "image/png",
-      "sizes": "76x76"
-    },
-
-    {
-      "src": "media/logo80.png",
-      "type": "image/png",
-      "sizes": "80x80"
-    },
-
-    {
-      "src": "media/logo87.png",
-      "type": "image/png",
-      "sizes": "87x87"
-    },
-    {
-      "src": "media/logo96.png",
-      "type": "image/png",
-      "sizes": "96x96"
+      "sizes": "90x90"
     },
     {
       "src": "media/logo100.png",
@@ -84,9 +15,9 @@
       "sizes": "100x100"
     },
     {
-      "src": "media/logo114.png",
+      "src": "media/logo110.png",
       "type": "image/png",
-      "sizes": "114x114"
+      "sizes": "110x110"
     },
     {
       "src": "media/logo120.png",
@@ -94,9 +25,14 @@
       "sizes": "120x120"
     },
     {
-      "src": "media/logo144.png",
+      "src": "media/logo130.png",
       "type": "image/png",
-      "sizes": "144x144"
+      "sizes": "130x130"
+    },
+    {
+      "src": "media/logo140.png",
+      "type": "image/png",
+      "sizes": "140x140"
     },
     {
       "src": "media/logo150.png",
@@ -104,14 +40,9 @@
       "sizes": "150x150"
     },
     {
-      "src": "media/logo152.png",
+      "src": "media/logo160.png",
       "type": "image/png",
-      "sizes": "152x152"
-    },
-    {
-      "src": "media/logo167.png",
-      "type": "image/png",
-      "sizes": "167x167"
+      "sizes": "160x160"
     },
     {
       "src": "media/logo171.png",
@@ -139,7 +70,12 @@
       "sizes": "228x228"
     },
     {
-      "src": "media/logo512.png",
+      "src": "media/logo280.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+    {
+      "src": "media/logo360.png",
       "type": "image/png",
       "sizes": "512x512"
     }

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import "./App.scss";
+import Login from "./pages/Login/Login";
 
 function App() {
   const [isReadyForInstall, setIsReadyForInstall] = useState<boolean>(false);
@@ -40,14 +41,16 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>Hello Admin!</h1>
-      {isReadyForInstall && (
-        <Button variant="contained" onClick={downloadApp}>
-          Donwload app
-        </Button>
-      )}
-    </div>
+    <>
+      <div className="App">
+        <h1>Hello Admin!</h1>
+        {isReadyForInstall && (
+          <Button variant="contained" onClick={downloadApp}>
+            Donwload app
+          </Button>
+        )}
+      </div>
+    </>
   );
 }
 
