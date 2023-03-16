@@ -4,6 +4,7 @@
   "dir": "ltr",
   "display_override": ["standalone", "fullscreen"],
   "display": "standalone",
+  "icons": [
     {
       "src": "media/logo90.png",
       "type": "image/png",
