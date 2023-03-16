@@ -1,0 +1,30 @@
+@import "src/styles/variables";
+
+.not-found {
+  height: 100%;
+  position: relative;
+  padding-top: 2rem;
+
+  &__half-circle {
+    position: absolute;
+    height: 40px;
+    width: 20px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    background-color: black;
+  }
+
+  &__titles {
+    margin: 30rem 0;
+    font-family: $font-family-bold;
+  }
+
+  &__title {
+    font-size: $font-size-big;
+  }
+
+  &__sub-title {
+    padding-top: 2rem;
+    color: $color-disabled;
+  }
+}

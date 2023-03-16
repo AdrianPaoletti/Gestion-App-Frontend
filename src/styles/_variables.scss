@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Neue Light";
+  src: url("../../public/fonts/NeueHaasDisplayLight.ttf");
+}
+
+@font-face {
+  font-family: "Neue Medium";
+  src: url("../../public/fonts/NeueHaasDisplayRoman.ttf");
+}
+
+@font-face {
+  font-family: "Neue Bold";
+  src: url("../../public/fonts/NeueHaasDisplayBold.ttf");
+}
+
+$font-family-light: "Neue Light";
+$font-family-medium: "Neue Medium";
+$font-family-bold: "Neue Bold";
+
+$font-size-big: 3rem;
+$font-size-normal: 1.4rem;
+$font-size-small: 1.2rem;
+
+$color-orange: #fdce84;
+$color-green: #8acac0;
+$color-disabled: #a2a2a7;
+$color-disabled-light: #cfcccca9;
+$color-error: #ff000e;

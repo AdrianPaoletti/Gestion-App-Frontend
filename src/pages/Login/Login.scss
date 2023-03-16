@@ -1,0 +1,98 @@
+@import "src/styles/variables";
+
+.login {
+  height: 100%;
+  position: relative;
+  padding-top: 2rem;
+  max-width: 450px;
+  margin: 0 auto;
+
+  &__half-circle {
+    height: 40px;
+    width: 20px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    background-color: black;
+  }
+
+  &__titles {
+    margin: 12rem 0 7rem 0;
+    font-family: $font-family-bold;
+  }
+
+  &__title {
+    font-size: $font-size-big;
+  }
+
+  &__sub-title {
+    padding-top: 3rem;
+    color: $color-disabled;
+  }
+
+  &__input {
+    height: 6rem;
+    padding: 1rem 2.4rem;
+    width: 100%;
+    margin: 0.8rem 0;
+    border-radius: 10px;
+    font-size: $font-size-normal;
+    font-family: $font-family-light;
+    border: none;
+    transition: background-color 0.25s;
+
+    &:focus {
+      outline: none;
+    }
+
+    &--username {
+      background-color: $color-orange;
+    }
+
+    &--password {
+      background-color: $color-disabled-light;
+    }
+
+    &--button {
+      position: relative;
+      margin-top: 20rem;
+      position: absolute;
+      font-family: $font-family-medium;
+      font-size: 1.6rem;
+      letter-spacing: 0.15rem;
+      font-weight: 600;
+      background-color: $color-green;
+      bottom: 0;
+    }
+
+    &--disabled {
+      background-color: $color-disabled-light;
+    }
+  }
+
+  &__input-container {
+    position: relative;
+    display: flex;
+
+    img {
+      position: absolute;
+      right: 1.2rem;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+    }
+  }
+
+  &__message {
+    font-weight: 600;
+    font-size: $font-size-small;
+    padding-left: 1rem;
+
+    &--helper {
+      color: $color-disabled;
+    }
+
+    &--error {
+      color: $color-error;
+    }
+  }
+}

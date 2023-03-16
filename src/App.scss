@@ -1,52 +1,5 @@
-@font-face {
-  font-family: "Montserrat";
-  src: url("../public/fonts/Montserrat.ttf");
-  font-weight: 200 900;
-  font-stretch: 75% 125%;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
-
-html {
-  font-size: 62.5%;
-  font-family: "Montserrat";
-}
-
-body {
-  font-size: 1.6rem;
-  padding: 1.5rem;
-  box-sizing: border-box;
-}
-
-.App {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-h1 {
-  display: block;
-  white-space: nowrap;
-  font-family: monospace;
-  padding-right: 1rem;
-  border-right: 0.3rem solid;
-  width: 13ch;
-  overflow: hidden;
-  animation: typing 1s steps(13), blink 0.5s infinite step-end alternate;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-}
-
-@keyframes blink {
-  50% {
-    border-color: transparent;
-  }
+.app {
+  padding: 1.8rem;
+  height: 100vh;
+  min-height: 80rem;
 }
