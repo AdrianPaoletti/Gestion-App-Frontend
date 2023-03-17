@@ -2,14 +2,13 @@ import jwtDecode from "jwt-decode";
 import React, { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-interface ProtectedRouteProps {
-  isValidToken: boolean;
-  // setValidToken: React.Dispatch<React.SetStateAction<boolean>>;
-}
+// interface ProtectedRouteProps {
+//   isValidToken: boolean;
+//   setValidToken: React.Dispatch<React.SetStateAction<boolean>>;
+// }
 
 const ProtectedRoute = () => {
   const [isValidToken, setIsValidToken] = useState<boolean>(false);
-  const [flag, setFlag] = useState<boolean>(false);
 
   useEffect(() => {
     try {
@@ -20,11 +19,9 @@ const ProtectedRoute = () => {
       if (validToken.username === process.env.REACT_APP_TOKEN_USERNAME) {
         setIsValidToken(true);
       }
-      setFlag(true);
     } catch (error) {
       console.warn("Token error", error);
       setIsValidToken(false);
-      setFlag(true);
     }
   }, []);
 
