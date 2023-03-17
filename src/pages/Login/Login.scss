@@ -1,22 +1,25 @@
 @import "src/styles/variables";
 
 .login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
   position: relative;
-  padding-top: 2rem;
   max-width: 450px;
   margin: 0 auto;
 
   &__half-circle {
     height: 40px;
     width: 20px;
+    margin-top: 2rem;
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
     background-color: black;
   }
 
   &__titles {
-    margin: 12rem 0 7rem 0;
+    margin: 2rem 0 7rem 0;
     font-family: $font-family-bold;
   }
 
@@ -25,7 +28,7 @@
   }
 
   &__sub-title {
-    padding-top: 3rem;
+    padding-top: 2rem;
     color: $color-disabled;
   }
 
@@ -53,15 +56,11 @@
     }
 
     &--button {
-      position: relative;
-      margin-top: 20rem;
-      position: absolute;
       font-family: $font-family-medium;
       font-size: 1.6rem;
       letter-spacing: 0.15rem;
       font-weight: 600;
       background-color: $color-green;
-      bottom: 0;
     }
 
     &--disabled {
