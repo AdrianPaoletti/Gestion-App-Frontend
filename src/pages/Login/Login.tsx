@@ -60,52 +60,54 @@ const Login = ({ user, setUser }: LoginProps) => {
   return (
     <section className="login">
       <div className="login__half-circle"></div>
-      <div className="login__titles">
-        <h1 className="login__title">Hey,</h1>
-        <h1 className="login__title">Login To Access.</h1>
-        <p className="login__sub-title">Just for administrators</p>
-      </div>
-      <div className="login__inputs">
-        <input
-          type="text"
-          className="login__input login__input--username"
-          id="username"
-          placeholder="Username"
-          onChange={handleChange}
-        />
-        <div className="login__input-container">
-          <input
-            type={showPassword ? "text" : "password"}
-            className="login__input login__input--password"
-            id="password"
-            placeholder="Password"
-            onChange={handleChange}
-            onKeyDown={(event) => {
-              if (event.key === "Enter") {
-                handleSubmit();
-              }
-            }}
-          />
-          <img
-            src={showPassword ? hideIconPath : showIconPath}
-            width={26}
-            alt="show password"
-            onClick={
-              user.password.length > 0
-                ? () => setShowPassword(!showPassword)
-                : undefined
-            }
-          />
+      <div className="login__container">
+        <div className="login__titles">
+          <h1 className="login__title">Hey,</h1>
+          <h1 className="login__title">Login To Access.</h1>
+          <p className="login__sub-title">Just for administrators</p>
         </div>
-        {showError ? (
-          <p className="login__message login__message--error">
-            Incorrect username or password
-          </p>
-        ) : (
-          <p className="login__message login__message--helper">
-            So far, so good
-          </p>
-        )}
+        <div className="login__inputs">
+          <input
+            type="text"
+            className="login__input login__input--username"
+            id="username"
+            placeholder="Username"
+            onChange={handleChange}
+          />
+          <div className="login__input-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              className="login__input login__input--password"
+              id="password"
+              placeholder="Password"
+              onChange={handleChange}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  handleSubmit();
+                }
+              }}
+            />
+            <img
+              src={showPassword ? hideIconPath : showIconPath}
+              width={26}
+              alt="show password"
+              onClick={
+                user.password.length > 0
+                  ? () => setShowPassword(!showPassword)
+                  : undefined
+              }
+            />
+          </div>
+          {showError ? (
+            <p className="login__message login__message--error">
+              Incorrect username or password
+            </p>
+          ) : (
+            <p className="login__message login__message--helper">
+              So far, so good
+            </p>
+          )}
+        </div>
       </div>
       <button
         className={`login__input login__input--button ${
