@@ -1,33 +1,24 @@
 import jwtDecode from "jwt-decode";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
-
-// interface ProtectedRouteProps {
-//   isValidToken: boolean;
-//   setValidToken: React.Dispatch<React.SetStateAction<boolean>>;
-// }
+import { User } from "../../models/user";
 
 const ProtectedRoute = () => {
-  const [isValidToken, setIsValidToken] = useState<boolean>(false);
-
-  useEffect(() => {
-    try {
-      const { token } = JSON.parse(
-        localStorage.getItem(process.env.REACT_APP_TOKEN as string) || ""
-      );
-      const validToken: { username: string } = jwtDecode(token);
-      if (validToken.username === process.env.REACT_APP_TOKEN_USERNAME) {
-        setIsValidToken(true);
-      }
-    } catch (error) {
-      console.warn("Token error", error);
-      setIsValidToken(false);
+  try {
+    if (
+      (
+        jwtDecode(
+          localStorage.getItem(process.env.REACT_APP_TOKEN as string) as string
+        ) as User
+      ).username === process.env.REACT_APP_TOKEN_USERNAME
+    ) {
+      return <Outlet />;
     }
-  }, []);
-
-  console.log(isValidToken);
-
-  return isValidToken ? <Outlet /> : <Navigate to={"/login"} replace />;
+    return <Navigate to={"/login"} replace />;
+  } catch (error) {
+    console.error(error);
+    return <Navigate to={"/login"} replace />;
+  }
 };
 
 export default ProtectedRoute;

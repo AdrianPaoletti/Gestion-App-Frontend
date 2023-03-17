@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
+import { useSelector } from "react-redux";
 // import { Button } from "@mui/material";
 
 import "./App.scss";
@@ -10,13 +11,20 @@ import { User } from "./models/user";
 import NotFound from "./pages/NotFound/NotFound";
 import HomePage from "./pages/HomePage/HomePage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import { AppState } from "./redux/reducers/rootReducer";
+import useUser from "./hooks/useUser";
 
 function App() {
   // const [isReadyForInstall, setIsReadyForInstall] = useState<boolean>(false);
   // const [deferredPrompt, setDeferredPrompt] = useState<any>();
-
+  const userLogged = useSelector((state: AppState) => state.logUser);
   const [user, setUser] = useState<User>({ username: "", password: "" });
+  const { loggedUser } = useUser();
 
+  useEffect(() => {
+    loggedUser();
+    console.log(userLogged);
+  }, []);
   // useEffect(() => {
   //   window.addEventListener("beforeinstallprompt", (event: Event) => {
   //     // Prevent the mini-infobar from appearing on mobile.

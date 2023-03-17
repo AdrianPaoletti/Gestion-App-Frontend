@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 import showIconPath from "../../assets/images/show.svg";
 import hideIconPath from "../../assets/images/hide.svg";
@@ -7,6 +6,7 @@ import "./Login.scss";
 import { User } from "../../models/user";
 import { CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router";
+import useUser from "../../hooks/useUser";
 
 interface LoginProps {
   user: User;
@@ -19,6 +19,7 @@ const Login = ({ user, setUser }: LoginProps) => {
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+  const { loginUser } = useUser();
 
   useEffect(() => {
     if (user.username.length && user.password.length) {
@@ -33,21 +34,14 @@ const Login = ({ user, setUser }: LoginProps) => {
     setUser({ ...user, [event.target.id]: value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setIsLoading(true);
     setIsDisabled(true);
-    axios
-      .post(`${process.env.REACT_APP_API}/users/login`, user)
-      .then(({ data }) => {
+    loginUser(user)
+      .then(() => {
         setShowError(false);
         setIsLoading(false);
         setIsDisabled(false);
-
-        const { token } = data;
-        localStorage.setItem(
-          process.env.REACT_APP_TOKEN as string,
-          JSON.stringify({ token })
-        );
         navigate("/");
       })
       .catch(() => {
@@ -68,6 +62,7 @@ const Login = ({ user, setUser }: LoginProps) => {
         </div>
         <div className="login__inputs">
           <input
+            autoComplete="off"
             type="text"
             className="login__input login__input--username"
             id="username"
@@ -76,6 +71,7 @@ const Login = ({ user, setUser }: LoginProps) => {
           />
           <div className="login__input-container">
             <input
+              autoComplete="off"
               type={showPassword ? "text" : "password"}
               className="login__input login__input--password"
               id="password"
