@@ -1,14 +1,12 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { Dispatch } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { User } from "../models/user";
 import {
   loggedUserAction,
   loginUserAction,
 } from "../redux/actions/actionCreator";
-
-import { AppState } from "../redux/reducers/rootReducer";
 
 const useUser = () => {
   const urlApi = process.env.REACT_APP_API;
