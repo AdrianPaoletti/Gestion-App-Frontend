@@ -1,8 +1,9 @@
+import { userAction } from "../actions/actionCreator";
 import actionTypes from "../actions/actionTypes";
 
 const logUserReducer = (
   user = { isAuthenticated: false, user: {} },
-  action: any
+  action: userAction
 ) => {
   let newUser;
 
@@ -19,13 +20,6 @@ const logUserReducer = (
       newUser = {
         isAuthenticated: false,
         user: {},
-      };
-      break;
-
-    case actionTypes.loggedUser:
-      newUser = {
-        isAuthenticated: true,
-        user: action.user,
       };
       break;
 

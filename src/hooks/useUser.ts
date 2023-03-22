@@ -4,8 +4,8 @@ import { Dispatch } from "react";
 import { useDispatch } from "react-redux";
 import { User } from "../models/user";
 import {
-  loggedUserAction,
   loginUserAction,
+  logoutUserAction,
 } from "../redux/actions/actionCreator";
 
 const useUser = () => {
@@ -17,7 +17,8 @@ const useUser = () => {
       .post(`${urlApi}/users/login`, userData)
       .then(({ data: { token } }) => {
         const user = jwtDecode(token);
-        dispatch(loginUserAction(user));
+        console.log(user);
+        dispatch(loginUserAction(user as User));
         localStorage.setItem(
           process.env.REACT_APP_TOKEN as string,
           JSON.stringify(token)
@@ -28,17 +29,12 @@ const useUser = () => {
       });
   };
 
-  const loggedUser = () => {
-    const checkUserLogged = JSON.parse(
-      localStorage.getItem(process.env.REACT_APP_TOKEN as string) as string
-    );
-    if (checkUserLogged) {
-      const userData = jwtDecode(checkUserLogged);
-      dispatch(loggedUserAction(userData));
-    }
+  const logOut = () => {
+    localStorage.removeItem(process.env.REACT_APP_TOKEN as string);
+    dispatch(logoutUserAction());
   };
 
-  return { loginUser, loggedUser };
+  return { loginUser, logOut };
 };
 
 export default useUser;
