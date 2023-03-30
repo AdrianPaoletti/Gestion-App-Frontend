@@ -1,13 +1,14 @@
 @import "src/styles/variables";
 
 .navbar {
-  width: 100%;
-  max-width: calc(550px - 3.6rem);
-  position: fixed;
-  bottom: 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   font-family: $font-family-bold;
+  background-color: #e6e6e6;
 
   &__container {
     display: flex;
@@ -15,7 +16,7 @@
     align-items: center;
     width: 100%;
     padding: 0.4rem;
-    border: 1px solid $color-disabled;
+    // border: 1px solid $color-disabled;
     border-radius: 10px;
     position: relative;
   }
@@ -35,9 +36,8 @@
       position: absolute;
       background-color: white;
       padding: 1rem;
-      border: 1px solid $color-disabled;
       border-radius: 50px;
-      bottom: 0;
+      bottom: 0.8rem;
       left: 0;
       margin: 0;
       left: 50%;
