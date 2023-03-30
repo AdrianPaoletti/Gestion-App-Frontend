@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 // import { useSelector } from "react-redux";
 // import { Button } from "@mui/material";
@@ -10,6 +10,8 @@ import { User } from "./models/user";
 import NotFound from "./pages/NotFound/NotFound";
 import HomePage from "./pages/HomePage/HomePage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Navbar from "./components/Navbar/Navbar";
+import BlockedCalendar from "./pages/BlockCalendar/BlockedCalendar";
 // import useUser from "./hooks/useUser";
 
 function App() {
@@ -51,18 +53,38 @@ function App() {
 
   return (
     <div className="app">
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/login"
-            element={<Login user={user} setUser={setUser} />}
-          />
-          <Route path="/not-found" element={<NotFound />} />
-          <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<HomePage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <div className="app__page">
+        <BrowserRouter>
+          <Routes>
+            <Route path="*" element={<Navigate to="/not-found" />} />
+            <Route path="/not-found" element={<NotFound />} />
+            <Route
+              path="/login"
+              element={<Login user={user} setUser={setUser} />}
+            />
+            <Route element={<ProtectedRoute />}>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <HomePage />
+                    <Navbar />
+                  </>
+                }
+              />
+              <Route
+                path="/blocked-calendar"
+                element={
+                  <>
+                    <BlockedCalendar />
+                    <Navbar />
+                  </>
+                }
+              />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
       {/* {isReadyForInstall && (
           <Button variant="contained" onClick={downloadApp}>
             Donwload app

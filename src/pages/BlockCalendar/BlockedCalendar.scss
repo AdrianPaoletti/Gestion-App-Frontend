@@ -1,6 +1,6 @@
 @import "src/styles/variables";
 
-.home {
+.blocked-calendar {
   &__titles {
     margin-top: 2rem;
   }
@@ -12,15 +12,5 @@
   &__sub-title {
     padding-top: 0.1rem;
     color: $color-disabled;
-  }
-
-  &__table {
-    margin-top: 2.5rem;
-    font-family: $font-family-medium;
-    font-size: 1.3rem;
-  }
-
-  &__block-list {
-    padding: 1.5rem 0.5rem;
   }
 }

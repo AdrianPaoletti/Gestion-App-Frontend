@@ -17,7 +17,6 @@ const useUser = () => {
       .post(`${urlApi}/users/login`, userData)
       .then(({ data: { token } }) => {
         const user = jwtDecode(token);
-        console.log(user);
         dispatch(loginUserAction(user as User));
         localStorage.setItem(
           process.env.REACT_APP_TOKEN as string,
@@ -26,6 +25,7 @@ const useUser = () => {
       })
       .catch((error) => {
         console.error("Something went wrong on login", error);
+        throw error;
       });
   };
 

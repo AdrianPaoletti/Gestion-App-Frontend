@@ -7,15 +7,19 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import "./index.scss";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { ThemeProvider } from "@mui/material/styles";
+import { defaultTheme } from "./styles/themes";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <ThemeProvider theme={defaultTheme}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </ThemeProvider>
   </React.StrictMode>
 );
 reportWebVitals();

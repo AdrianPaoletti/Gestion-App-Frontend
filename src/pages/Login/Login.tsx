@@ -39,9 +39,11 @@ const Login = ({ user, setUser }: LoginProps) => {
     setIsDisabled(true);
     loginUser(user)
       .then(() => {
+        console.log();
         setShowError(false);
         setIsLoading(false);
         setIsDisabled(false);
+        setUser({ username: "", password: "" });
         navigate("/");
       })
       .catch(() => {
