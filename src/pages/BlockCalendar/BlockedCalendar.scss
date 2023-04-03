@@ -2,7 +2,7 @@
 
 .blocked-calendar {
   &__titles {
-    margin-top: 2rem;
+    margin-top: 0.5rem;
   }
 
   &__title {
@@ -12,5 +12,260 @@
   &__sub-title {
     padding-top: 0.1rem;
     color: $color-disabled;
+  }
+
+  &__accordion {
+    padding-bottom: 1.5rem;
+    &--days {
+      padding-top: 1.5rem;
+    }
+  }
+
+  &__accordion-title {
+    display: flex;
+    align-items: center;
+    h3 {
+      margin: 0.5rem 0 0 0.5rem;
+    }
+  }
+
+  &__hours {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  &__hour {
+    font-size: $font-size-normal;
+    list-style: none;
+    padding: 1.3rem;
+    width: 100%;
+    text-align: center;
+    background-color: $color-orange-light;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color-orange;
+      color: black;
+    }
+
+    &--selected {
+      background-color: $color-orange;
+      font-weight: 800;
+      color: black;
+    }
+
+    &--disabled {
+      background-color: #f8f9fa;
+      color: $color-disabled;
+      cursor: auto;
+      &:hover {
+        background-color: #f8f9fa;
+        color: $color-disabled;
+      }
+    }
+  }
+
+  &__summary {
+    display: flex;
+    flex-direction: column;
+    &-block {
+      display: flex;
+      margin-bottom: 1.5rem;
+      p {
+        padding-left: 1rem;
+      }
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__button {
+    padding: 1.5rem;
+    margin-top: 1rem;
+    color: $color-green-dark;
+    cursor: pointer;
+    background-color: $color-green-light;
+    border: 1px solid $color-green;
+    border-radius: 0.5rem;
+    font-weight: 500;
+
+    &--disabled {
+      background-color: #f8f9fa;
+      color: $color-disabled;
+      border: none;
+      cursor: auto;
+    }
+
+    &--hours {
+      margin-top: 2rem;
+    }
+
+    &--submit {
+      position: relative;
+    }
+  }
+
+  &__change {
+    color: $color-green-dark;
+    margin-top: 0.6rem;
+    margin-right: 0.4rem;
+  }
+}
+
+//* BEGINING CALENDAR STYLES
+.rmdp-wrapper {
+  width: auto;
+  z-index: 0 !important;
+}
+
+.rmdp-shadow {
+  box-shadow: none;
+}
+
+.rmdp-calendar {
+  padding: 0;
+}
+
+.rmdp-top-class {
+  display: initial !important;
+}
+
+.rmdp-header {
+  font-size: 1.8rem;
+}
+
+.rmdp-day-picker {
+  display: initial !important;
+}
+
+.rmdp-day {
+  // border: 1px solid black;
+  background-color: $color-orange-light;
+  width: 6rem;
+  height: 6rem;
+  margin: 0 0.3rem;
+  &-hidden {
+    border: none;
+    background-color: transparent;
+    &:hover {
+      background-color: transparent !important;
+      color: black;
+      font-weight: 800;
+    }
+  }
+  &:hover {
+    background-color: $color-orange;
+    color: black;
+    font-weight: 800;
+  }
+  span {
+    border-radius: 0;
+  }
+}
+
+.rmdp-day.rmdp-deactive,
+.rmdp-day.rmdp-disabled {
+  background-color: #f8f9fa !important;
+  &:hover {
+    color: #8798ad;
+  }
+}
+
+.rmdp-arrow {
+  border: solid black;
+  border-width: 0 2px 2px 0;
+}
+
+.rmdp-arrow-container {
+  &:hover {
+    background-color: white;
+  }
+}
+
+.rmdp-arrow-container:hover .rmdp-arrow {
+  border: solid black;
+  border-width: 0 2px 2px 0;
+}
+
+.rmdp-day.rmdp-today {
+  background-color: $color-orange-light;
+  border: 2px solid $color-orange;
+  color: black;
+}
+
+.rmdp-day.rmdp-today span {
+  background-color: $color-orange-light;
+  box-shadow: none;
+  color: black;
+}
+
+.rmdp-day.rmdp-selected {
+  background-color: $color-orange;
+  color: black;
+  font-weight: 800;
+}
+
+.rmdp-day.rmdp-selected span:not(.highlight) {
+  background-color: $color-orange;
+  color: black;
+  box-shadow: none;
+  font-weight: 800;
+}
+
+.rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
+  background-color: $color-orange;
+  color: black;
+  font-weight: 800;
+}
+
+.rmdp-week {
+  padding-bottom: 0.6rem;
+}
+
+.rmdp-week-day {
+  color: black;
+  font-family: $font-family-medium;
+  font-size: 1.4rem;
+  font-weight: 400;
+  width: 5rem;
+  height: 5rem;
+}
+//* END CALENDAR STYLES
+
+//? MUI
+.css-1mme1wx-MuiAccordionSummary-expandIconWrapper.Mui-expanded {
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+@media (max-width: 960px) {
+  .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
+    background-color: transparent;
+  }
+
+  .rmdp-day {
+    &:hover {
+      background-color: $color-orange-light;
+    }
+  }
+
+  .rmdp-selected {
+    background-color: $color-orange !important;
+    font-weight: 800;
+  }
+
+  .blocked-calendar {
+    &__hour {
+      &:hover {
+        background-color: $color-orange-light;
+      }
+      &--selected {
+        background-color: $color-orange !important;
+      }
+    }
   }
 }

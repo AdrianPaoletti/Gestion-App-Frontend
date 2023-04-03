@@ -7,5 +7,10 @@
     height: 100%;
     position: relative;
     padding: 1.8rem;
+    overflow: scroll;
+
+    &-container {
+      padding-bottom: 6.5rem;
+    }
   }
 }

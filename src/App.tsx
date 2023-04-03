@@ -66,19 +66,19 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <>
+                  <div className="app__page-container">
                     <HomePage />
                     <Navbar />
-                  </>
+                  </div>
                 }
               />
               <Route
                 path="/blocked-calendar"
                 element={
-                  <>
+                  <div className="app__page-container">
                     <BlockedCalendar />
                     <Navbar />
-                  </>
+                  </div>
                 }
               />
             </Route>

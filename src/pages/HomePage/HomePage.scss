@@ -2,7 +2,7 @@
 
 .home {
   &__titles {
-    margin-top: 2rem;
+    margin-top: 0.5rem;
   }
 
   &__title {
@@ -21,6 +21,11 @@
   }
 
   &__block-list {
-    padding: 1.5rem 0.5rem;
+    padding: 1.5rem 0;
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
   }
 }

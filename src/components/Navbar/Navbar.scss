@@ -1,7 +1,7 @@
 @import "src/styles/variables";
 
 .navbar {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
@@ -9,7 +9,6 @@
   justify-content: center;
   font-family: $font-family-bold;
   background-color: #e6e6e6;
-
   &__container {
     display: flex;
     justify-content: space-between;
@@ -47,5 +46,13 @@
     & p {
       font-size: 1rem;
     }
+  }
+}
+
+@media (min-width: 550px) {
+  .navbar {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 550px;
   }
 }
