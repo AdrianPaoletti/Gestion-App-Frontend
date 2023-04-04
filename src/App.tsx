@@ -12,13 +12,16 @@ import HomePage from "./pages/HomePage/HomePage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Navbar from "./components/Navbar/Navbar";
 import BlockedCalendar from "./pages/BlockCalendar/BlockedCalendar";
+import { useSelector } from "react-redux";
+import { AppState } from "./redux/reducers/rootReducer";
 // import useUser from "./hooks/useUser";
 
 function App() {
   // const [isReadyForInstall, setIsReadyForInstall] = useState<boolean>(false);
   // const [deferredPrompt, setDeferredPrompt] = useState<any>();
+  const blockedDays = useSelector((state: AppState) => state.blockedDays);
+  const [locationUrl, setLocationUrl] = useState<string>("");
   const [user, setUser] = useState<User>({ username: "", password: "" });
-
   // useEffect(() => {
   //   window.addEventListener("beforeinstallprompt", (event: Event) => {
   //     // Prevent the mini-infobar from appearing on mobile.
@@ -67,8 +70,11 @@ function App() {
                 path="/"
                 element={
                   <div className="app__page-container">
-                    <HomePage />
-                    <Navbar />
+                    <HomePage blockedDays={blockedDays} />
+                    <Navbar
+                      locationUrl={locationUrl}
+                      setLocationUrl={setLocationUrl}
+                    />
                   </div>
                 }
               />
@@ -76,8 +82,11 @@ function App() {
                 path="/blocked-calendar"
                 element={
                   <div className="app__page-container">
-                    <BlockedCalendar />
-                    <Navbar />
+                    <BlockedCalendar setLocationUrl={setLocationUrl} />
+                    <Navbar
+                      locationUrl={locationUrl}
+                      setLocationUrl={setLocationUrl}
+                    />
                   </div>
                 }
               />

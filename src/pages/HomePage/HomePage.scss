@@ -1,6 +1,8 @@
 @import "src/styles/variables";
 
 .home {
+  display: flex;
+  flex-direction: column;
   &__titles {
     margin-top: 0.5rem;
   }
@@ -14,12 +16,6 @@
     color: $color-disabled;
   }
 
-  &__table {
-    margin-top: 2.5rem;
-    font-family: $font-family-medium;
-    font-size: 1.3rem;
-  }
-
   &__block-list {
     padding: 1.5rem 0;
   }
@@ -27,5 +23,12 @@
   &__pagination {
     display: flex;
     justify-content: center;
+  }
+
+  &__no-results {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 4rem;
+    color: $color-green-dark;
   }
 }

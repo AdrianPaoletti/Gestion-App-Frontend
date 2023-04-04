@@ -1,3 +1,5 @@
+@import "src/styles/variables";
+
 .app {
   height: 100vh;
   max-width: 550px;
@@ -7,7 +9,16 @@
     height: 100%;
     position: relative;
     padding: 1.8rem;
-    overflow: scroll;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: 0.7rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2rem;
+      background-color: $color-green;
+    }
 
     &-container {
       padding-bottom: 6.5rem;

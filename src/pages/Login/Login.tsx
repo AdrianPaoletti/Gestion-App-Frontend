@@ -39,7 +39,6 @@ const Login = ({ user, setUser }: LoginProps) => {
     setIsDisabled(true);
     loginUser(user)
       .then(() => {
-        console.log();
         setShowError(false);
         setIsLoading(false);
         setIsDisabled(false);
@@ -122,6 +121,7 @@ const Login = ({ user, setUser }: LoginProps) => {
               height: "2rem",
               position: "absolute",
               marginLeft: "1rem",
+              color: "#3c5a56",
             }}
           />
         )}

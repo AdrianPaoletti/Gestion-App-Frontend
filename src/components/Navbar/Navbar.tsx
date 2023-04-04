@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import MeetingRoomOutlinedIcon from "@mui/icons-material/MeetingRoomOutlined";
 import HomeWorkOutlinedIcon from "@mui/icons-material/HomeWorkOutlined";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
@@ -8,8 +8,12 @@ import "./Navbar.scss";
 import useUser from "../../hooks/useUser";
 import { useLocation, useNavigate } from "react-router";
 
-const Navbar = () => {
-  const [locationUrl, setLocationUrl] = useState<string>("");
+interface NavbarProps {
+  locationUrl: string;
+  setLocationUrl: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Navbar = ({ locationUrl, setLocationUrl }: NavbarProps) => {
   const { logOut } = useUser();
   const navigate = useNavigate();
   const location = useLocation();
@@ -53,8 +57,8 @@ const Navbar = () => {
             sx={{
               fontSize: "2.3rem",
               background:
-                locationUrl === "/blocked-calendar" ? "#fdce84" : "#8acac0",
-              ":hover": { background: "#fdce84" },
+                locationUrl === "/blocked-calendar" ? "#8acac0" : "#fdce84",
+              ":hover": { background: "#8acac0" },
             }}
           >
             <AddBoxOutlinedIcon fontSize="inherit" />

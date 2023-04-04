@@ -2,30 +2,39 @@ import React, { useState } from "react";
 import "./BlockedDayCard.scss";
 
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { Box, IconButton, Modal } from "@mui/material";
+import { Box, CircularProgress, IconButton, Modal } from "@mui/material";
 import { BlockedDay } from "../../../models/blockedDay";
 import moment from "moment";
 import axios from "axios";
 
 interface BlockedCardProps {
   blockedDay: BlockedDay;
+  getBlockedDays: () => void;
 }
 
-const BlockedCard = ({ blockedDay }: BlockedCardProps) => {
+const BlockedCard = ({ blockedDay, getBlockedDays }: BlockedCardProps) => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [id, setId] = useState<string>("");
   const handleDelete = async (id: string) => {
+    setIsLoading(true);
     const token = await JSON.parse(
       localStorage.getItem(process.env.REACT_APP_TOKEN as string) || ""
     );
-    console.log(id);
     axios
-      .delete(`http://localhost:8000/days/blocked/${id}`, {
+      .delete(`${process.env.REACT_APP_API}/days/blocked/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then(() => {
+        setIsLoading(false);
         setIsOpenModal(false);
+        getBlockedDays();
+      })
+      .catch((error) => {
+        console.error(error);
+        setIsLoading(false);
       });
   };
 
@@ -34,9 +43,7 @@ const BlockedCard = ({ blockedDay }: BlockedCardProps) => {
       <div className="blocked-card__information">
         <div className="blocked-card__information-unit">
           <h4>Start date:</h4>
-          <p>
-            {moment(blockedDay.startDate).format("DD/MM/YYYY")}, {blockedDay.id}
-          </p>
+          <p>{moment(blockedDay.startDate).format("DD/MM/YYYY")}</p>
         </div>
         <div className="blocked-card__information-unit">
           <h4>End date:</h4>
@@ -67,7 +74,10 @@ const BlockedCard = ({ blockedDay }: BlockedCardProps) => {
           top: "0.5rem",
           fontSize: "2rem",
         }}
-        onClick={() => setIsOpenModal(true)}
+        onClick={() => {
+          setIsOpenModal(true);
+          setId(blockedDay.id);
+        }}
       >
         <DeleteOutlineIcon fontSize="inherit" />
       </IconButton>
@@ -95,9 +105,20 @@ const BlockedCard = ({ blockedDay }: BlockedCardProps) => {
             Are you sure you want to delete it?
           </p>
           <div className="blocked-card__modal-buttons">
+            {isLoading && (
+              <CircularProgress
+                style={{
+                  width: "2rem",
+                  height: "2rem",
+                  marginTop: "1rem",
+                  marginRight: "1rem",
+                  color: "#3c5a56",
+                }}
+              />
+            )}
             <button
               className="blocked-card__modal-delete"
-              onClick={() => handleDelete(blockedDay.id)}
+              onClick={() => handleDelete(id)}
             >
               Delete
             </button>

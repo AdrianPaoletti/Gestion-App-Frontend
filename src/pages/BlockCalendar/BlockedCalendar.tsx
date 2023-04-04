@@ -6,7 +6,6 @@ import {
   AccordionDetails,
   CircularProgress,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
@@ -15,13 +14,21 @@ import { Calendar, DateObject } from "react-multi-date-picker";
 import "./BlockedCalendar.scss";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { BlockedDay } from "../../models/blockedDay";
+import Loader from "../../components/Loader/Loader";
 
-const BlockedCalendar = () => {
+interface BlockedCalendarProps {
+  setLocationUrl: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
   const [selectedDates, setSelectedDates] = useState<Array<Date>>([]);
   const [selectedHours, setSelectedHours] = useState<Array<string>>([]);
   const [blockHoursFlag, setBlockHoursFlag] = useState<boolean>(false);
   const [accordionOpen, setAccordionOpen] = useState<string>("dates");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoadingMonthly, setIsLoadingMonthly] = useState<boolean>(false);
+  const [disabledDates, setDisabledDates] = useState<Array<Date>>();
   const navigate = useNavigate();
   const hoursToBlock: Array<string> = [
     "8:00",
@@ -32,6 +39,31 @@ const BlockedCalendar = () => {
     "15:30",
     "17:00",
   ];
+
+  useEffect(() => {
+    getBlockedDaysMonthly();
+  }, []);
+
+  const getBlockedDaysMonthly = (date: DateObject | null = null) => {
+    setIsLoadingMonthly(true);
+    axios
+      .get(`${process.env.REACT_APP_API}/days/blocked-monthly`, {
+        params: {
+          month: date?.month.index,
+          year: date?.year,
+        },
+      })
+      .then(({ data: blockedDays }) => {
+        setDisabledDates(
+          blockedDays.map((blockedDay: BlockedDay) => blockedDay.dates)
+        );
+        setIsLoadingMonthly(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setIsLoadingMonthly(false);
+      });
+  };
 
   const formatDateSelection = (dates: Array<any>) => {
     const datesFormatted = dates.map((date) => {
@@ -82,7 +114,7 @@ const BlockedCalendar = () => {
     );
     axios
       .post(
-        "http://localhost:8000/days/blocked",
+        `${process.env.REACT_APP_API}/days/blocked`,
         {
           dates: selectedDates,
           hours: selectedHours,
@@ -96,6 +128,7 @@ const BlockedCalendar = () => {
       .then(() => {
         setIsLoading(false);
         navigate("/");
+        setLocationUrl("/");
       })
       .catch((error) => {
         setIsLoading(false);
@@ -109,6 +142,7 @@ const BlockedCalendar = () => {
         <h2 className="blocked-calendar__title">Calendar</h2>
         <h3 className="blocked-calendar__sub-title">picker</h3>
       </div>
+      {isLoadingMonthly && <Loader />}
       <div className="blocked-calendar__accordion blocked-calendar__accordion--days">
         <Accordion expanded={accordionOpen === "dates"}>
           <AccordionSummary
@@ -128,6 +162,15 @@ const BlockedCalendar = () => {
             <div className="blocked-calendar__details">
               <Calendar
                 multiple
+                weekStartDayIndex={1}
+                onMonthChange={getBlockedDaysMonthly}
+                mapDays={(dateObject) =>
+                  disabledDates
+                    ?.map((disabledDate) => new Date(disabledDate).getDate())
+                    .includes(dateObject.date.day)
+                    ? { disabled: true }
+                    : { disabled: false }
+                }
                 disableYearPicker={true}
                 value={selectedDates}
                 minDate={new Date()}
@@ -256,6 +299,7 @@ const BlockedCalendar = () => {
                       height: "2rem",
                       position: "absolute",
                       marginLeft: "1rem",
+                      color: "#3c5a56",
                     }}
                   />
                 )}
