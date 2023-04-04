@@ -31,7 +31,6 @@ const HomePage = ({ blockedDays }: HomePageProps) => {
         params: { page: actualPage, limit: PER_PAGE },
       })
       .then(({ data: { total, blockedDays } }) => {
-        console.log(total, blockedDays);
         if (blockedDays) {
           dispatch(getBlockedDaysAction(blockedDays));
           setTotalBlockedDays(total);
