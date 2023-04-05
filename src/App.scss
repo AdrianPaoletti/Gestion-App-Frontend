@@ -9,6 +9,7 @@
     height: 100%;
     position: relative;
     padding: 1.8rem;
+    bottom: 5rem;
 
     &-container {
       padding-bottom: 6.5rem;
@@ -20,6 +21,7 @@
   .app {
     &__page {
       overflow: auto;
+
       &::-webkit-scrollbar {
         width: 0.55rem;
       }
