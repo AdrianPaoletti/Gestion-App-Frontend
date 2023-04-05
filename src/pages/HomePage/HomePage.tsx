@@ -22,7 +22,6 @@ const HomePage = ({ blockedDays }: HomePageProps) => {
 
   useEffect(() => {
     getBlockedDays();
-    console.log(actualPage);
   }, [actualPage]);
 
   const getBlockedDays = () => {

@@ -112,11 +112,24 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
     const token = await JSON.parse(
       localStorage.getItem(process.env.REACT_APP_TOKEN as string) || ""
     );
+    const submitDates = selectedDates.map(
+      (selectedDate) =>
+        new Date(
+          Date.UTC(
+            selectedDate.getFullYear(),
+            selectedDate.getMonth(),
+            selectedDate.getDate(),
+            selectedDate.getHours(),
+            selectedDate.getMinutes(),
+            selectedDate.getSeconds()
+          )
+        )
+    );
     axios
       .post(
         `${process.env.REACT_APP_API}/days/blocked`,
         {
-          dates: selectedDates,
+          dates: submitDates,
           hours: selectedHours,
         },
         {
