@@ -9,13 +9,13 @@ import {
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
-import { Calendar, DateObject } from "react-multi-date-picker";
 
-import "./BlockedCalendar.scss";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { BlockedDay } from "../../models/blockedDay";
 import Loader from "../../components/Loader/Loader";
+import { Calendar, DateObject } from "react-multi-date-picker";
+import "./BlockedCalendar.scss";
 
 interface BlockedCalendarProps {
   setLocationUrl: React.Dispatch<React.SetStateAction<string>>;

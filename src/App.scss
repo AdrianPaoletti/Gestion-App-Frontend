@@ -9,19 +9,25 @@
     height: 100%;
     position: relative;
     padding: 1.8rem;
-    overflow: auto;
-
-    &::-webkit-scrollbar {
-      width: 0.7rem;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 2rem;
-      background-color: $color-green;
-    }
 
     &-container {
       padding-bottom: 6.5rem;
+    }
+  }
+}
+
+@media (min-width: 930px) {
+  .app {
+    &__page {
+      overflow: auto;
+      &::-webkit-scrollbar {
+        width: 0.55rem;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 2rem;
+        background-color: $color-green;
+      }
     }
   }
 }
