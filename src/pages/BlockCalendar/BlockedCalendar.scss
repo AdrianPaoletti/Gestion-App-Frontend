@@ -117,32 +117,32 @@
 }
 
 //* BEGINING CALENDAR STYLES
-.rmdp-wrapper {
+div.rmdp-wrapper {
   width: auto;
   z-index: 0 !important;
 }
 
-.rmdp-shadow {
+div.rmdp-shadow {
   box-shadow: none;
 }
 
-.rmdp-calendar {
+div.rmdp-calendar {
   padding: 0;
 }
 
-.rmdp-top-class {
+div.rmdp-top-class {
   display: initial !important;
 }
 
-.rmdp-header {
+div.rmdp-header {
   font-size: 1.8rem;
 }
 
-.rmdp-day-picker {
+div.rmdp-day-picker {
   display: initial !important;
 }
 
-.rmdp-day {
+div.rmdp-day {
   // border: 1px solid black;
   background-color: $color-orange-light;
   width: 6rem;
@@ -167,66 +167,66 @@
   }
 }
 
-.rmdp-day.rmdp-deactive,
-.rmdp-day.rmdp-disabled {
+div.rmdp-day.rmdp-deactive,
+div.rmdp-day.rmdp-disabled {
   background-color: #f8f9fa !important;
   &:hover {
     color: #8798ad;
   }
 }
 
-.rmdp-arrow {
+i.rmdp-arrow {
   border: solid black;
   border-width: 0 2px 2px 0;
 }
 
-.rmdp-arrow-container {
+span.rmdp-arrow-container {
   &:hover {
     background-color: white;
   }
 }
 
-.rmdp-arrow-container:hover .rmdp-arrow {
+span.rmdp-arrow-container:hover i.rmdp-arrow {
   border: solid black;
   border-width: 0 2px 2px 0;
 }
 
-.rmdp-day.rmdp-today {
+div.rmdp-day.rmdp-today {
   background-color: $color-orange-light;
   border: 2px solid $color-orange;
   color: black;
 }
 
-.rmdp-day.rmdp-today span {
+div.rmdp-day.rmdp-today span {
   background-color: $color-orange-light;
   box-shadow: none;
   color: black;
 }
 
-.rmdp-day.rmdp-selected {
+div.rmdp-day.rmdp-selected {
   background-color: $color-orange;
   color: black;
   font-weight: 800;
 }
 
-.rmdp-day.rmdp-selected span:not(.highlight) {
+div.rmdp-day.rmdp-selected span:not(.highlight) {
   background-color: $color-orange;
   color: black;
   box-shadow: none;
   font-weight: 800;
 }
 
-.rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
+div.rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
   background-color: $color-orange;
   color: black;
   font-weight: 800;
 }
 
-.rmdp-week {
+div.rmdp-week {
   padding-bottom: 0.6rem;
 }
 
-.rmdp-week-day {
+div.rmdp-week-day {
   color: black;
   font-family: $font-family-medium;
   font-size: 1.4rem;
@@ -243,22 +243,22 @@
 }
 
 @media (max-width: 960px) {
-  .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
+  div.rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
     background-color: transparent;
   }
 
-  .rmdp-day {
+  div.rmdp-day {
     &:hover {
       background-color: $color-orange-light;
     }
   }
 
-  .rmdp-selected {
+  div.rmdp-selected {
     background-color: $color-orange !important;
     font-weight: 800;
   }
 
-  .blocked-calendar {
+  div.blocked-calendar {
     &__hour {
       &:hover {
         background-color: $color-orange-light;
