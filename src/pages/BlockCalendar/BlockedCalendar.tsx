@@ -43,6 +43,9 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
   useEffect(() => {
     getBlockedDaysMonthly();
   }, []);
+  useEffect(() => {
+    console.log(disabledDates);
+  }, [disabledDates]);
 
   const getBlockedDaysMonthly = (date: DateObject | null = null) => {
     setIsLoadingMonthly(true);
@@ -54,9 +57,13 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
         },
       })
       .then(({ data: blockedDays }) => {
-        setDisabledDates(
-          blockedDays.map((blockedDay: BlockedDay) => blockedDay.dates)
-        );
+        setDisabledDates(() => {
+          const monthlyDates: Date[] = [];
+          blockedDays.map((blockedDay: BlockedDay) =>
+            blockedDay.dates.forEach((date) => monthlyDates.push(date))
+          );
+          return monthlyDates;
+        });
         setIsLoadingMonthly(false);
       })
       .catch((error) => {
