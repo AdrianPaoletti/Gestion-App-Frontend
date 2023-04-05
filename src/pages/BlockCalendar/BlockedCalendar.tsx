@@ -31,8 +31,8 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
   const [disabledDates, setDisabledDates] = useState<Array<Date>>();
   const navigate = useNavigate();
   const hoursToBlock: Array<string> = [
-    "8:00",
-    "9:30",
+    "08:00",
+    "09:30",
     "11:00",
     "12:30",
     "14:00",
