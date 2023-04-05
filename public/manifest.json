@@ -2,81 +2,26 @@
   "background_color": "#ffffff",
   "description": "Management CCJ-APP",
   "dir": "ltr",
-  "display_override": ["standalone", "fullscreen"],
+  "display_override": ["standalone"],
   "display": "standalone",
   "icons": [
     {
-      "src": "media/logo90.png",
+      "src": "media/tanzania64.png",
       "type": "image/png",
-      "sizes": "90x90"
+      "sizes": "64x64"
     },
     {
-      "src": "media/logo100.png",
+      "src": "media/tanzania128.png",
       "type": "image/png",
-      "sizes": "100x100"
+      "sizes": "128x128"
     },
     {
-      "src": "media/logo110.png",
+      "src": "media/tanzania256.png",
       "type": "image/png",
-      "sizes": "110x110"
+      "sizes": "256x256"
     },
     {
-      "src": "media/logo120.png",
-      "type": "image/png",
-      "sizes": "120x120"
-    },
-    {
-      "src": "media/logo130.png",
-      "type": "image/png",
-      "sizes": "130x130"
-    },
-    {
-      "src": "media/logo140.png",
-      "type": "image/png",
-      "sizes": "140x140"
-    },
-    {
-      "src": "media/logo150.png",
-      "type": "image/png",
-      "sizes": "150x150"
-    },
-    {
-      "src": "media/logo160.png",
-      "type": "image/png",
-      "sizes": "160x160"
-    },
-    {
-      "src": "media/logo171.png",
-      "type": "image/png",
-      "sizes": "171x171"
-    },
-    {
-      "src": "media/logo180.png",
-      "type": "image/png",
-      "sizes": "180x180"
-    },
-    {
-      "src": "media/logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "media/logo216.png",
-      "type": "image/png",
-      "sizes": "216x216"
-    },
-    {
-      "src": "media/logo228.png",
-      "type": "image/png",
-      "sizes": "228x228"
-    },
-    {
-      "src": "media/logo280.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    },
-    {
-      "src": "media/logo360.png",
+      "src": "media/tanzania512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
@@ -86,7 +31,7 @@
   "orientation": "portrait",
   "prefer_related_application": false,
   "scope": "/",
-  "short_name": "CCJ Man",
+  "short_name": "CCJ Management",
   "start_url": "/",
-  "theme_color": "blue"
+  "theme_color": "#fdce84"
 }
