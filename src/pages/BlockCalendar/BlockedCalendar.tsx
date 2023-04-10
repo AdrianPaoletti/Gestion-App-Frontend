@@ -213,7 +213,7 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
       <div className="blocked-calendar__accordion">
         <Accordion expanded={accordionOpen === "hours"}>
           <AccordionSummary
-            onClick={() => setAccordionOpen("hours")}
+            onClick={() => selectedDates.length && setAccordionOpen("hours")}
             expandIcon={
               <p className="blocked-calendar__change">
                 {selectedHours.length ? "Change" : ""}

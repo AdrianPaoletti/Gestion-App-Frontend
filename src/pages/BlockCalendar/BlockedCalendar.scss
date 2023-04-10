@@ -259,7 +259,7 @@ div.rmdp-week-day {
     font-weight: 800;
   }
 
-  div.blocked-calendar {
+  li.blocked-calendar {
     &__hour {
       &:hover {
         background-color: $color-orange-light;
