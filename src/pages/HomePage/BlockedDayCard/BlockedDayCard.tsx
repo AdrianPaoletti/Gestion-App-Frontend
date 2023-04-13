@@ -42,14 +42,6 @@ const BlockedCard = ({ blockedDay, getBlockedDays }: BlockedCardProps) => {
     <>
       <div className="blocked-card__information">
         <div className="blocked-card__information-unit">
-          <h4>Start date:</h4>
-          <p>{moment(blockedDay.startDate).format("DD/MM/YYYY")}</p>
-        </div>
-        <div className="blocked-card__information-unit">
-          <h4>End date:</h4>
-          <p>{moment(blockedDay.endDate).format("DD/MM/YYYY")}</p>
-        </div>
-        <div className="blocked-card__information-unit">
           <h4>Dates:</h4>
           <p>
             {blockedDay.dates.map(
@@ -57,6 +49,12 @@ const BlockedCard = ({ blockedDay, getBlockedDays }: BlockedCardProps) => {
                 moment(date).format("DD/MM/YYYY") +
                 (dates.length - 1 === index ? "" : ", ")
             )}
+          </p>
+        </div>
+        <div className="blocked-card__information-unit">
+          <h4>Observations:</h4>
+          <p>
+            {blockedDay.observations}
           </p>
         </div>
         <div className="blocked-card__information-unit blocked-card__information-unit--hours">
@@ -72,7 +70,7 @@ const BlockedCard = ({ blockedDay, getBlockedDays }: BlockedCardProps) => {
           position: "absolute",
           right: "0.5rem",
           top: "0.5rem",
-          fontSize: "2rem",
+          fontSize: "2.25rem",
         }}
         onClick={() => {
           setIsOpenModal(true);

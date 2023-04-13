@@ -243,6 +243,15 @@ div.rmdp-week-day {
   -webkit-transform: none !important;
 }
 
+.MuiInputBase-input.MuiOutlinedInput-input{
+  font-size: 1.4rem;
+  line-height: 20px;
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root{
+  padding: 1.3rem 1.4rem;
+}
+
 @media (max-width: 960px) {
   div.rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
     background-color: transparent;

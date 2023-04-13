@@ -11,20 +11,20 @@
   &__information {
     display: flex;
     flex-direction: column;
+    width: 94%;
   }
   &__information-unit {
     display: flex;
     margin: 0.4rem 0;
-
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+    line-height: 1.7rem;
     h4 {
-      font-size: $font-size-small;
+      font-size: 1.3rem;
     }
     p {
-      font-size: $font-size-small;
+      font-size: 1.3rem;
       padding-left: 0.5rem;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
     }
 
     &--hours {

@@ -3,5 +3,6 @@ export interface BlockedDay {
   endDate: Date;
   hours: Array<string>;
   dates: Array<Date>;
+  observations: string;
   id: string;
 }
