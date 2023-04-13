@@ -19,9 +19,11 @@
     flex-wrap: wrap;
     overflow-wrap: anywhere;
     line-height: 1.7rem;
+
     h4 {
       font-size: 1.3rem;
     }
+
     p {
       font-size: 1.3rem;
       padding-left: 0.5rem;
@@ -40,7 +42,7 @@
       li {
         padding: 0.5rem;
         margin: 0 0.5rem 0.5rem 0;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         background-color: $color-orange;
         border-radius: 1rem;
         overflow: hidden;
