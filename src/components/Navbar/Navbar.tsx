@@ -39,7 +39,7 @@ const Navbar = ({ locationUrl, setLocationUrl }: NavbarProps) => {
         >
           <IconButton
             color="inherit"
-            sx={{ padding: "0.2rem ", fontSize: "2.5rem" }}
+            sx={{ padding: "0.3rem 2.3rem", fontSize: "2.5rem", ":hover": {background: "transparent"} }}
           >
             <HomeWorkOutlinedIcon fontSize="inherit" />
           </IconButton>
@@ -75,7 +75,7 @@ const Navbar = ({ locationUrl, setLocationUrl }: NavbarProps) => {
         >
           <IconButton
             color="inherit"
-            sx={{ padding: "0.2rem", fontSize: "2.5rem" }}
+            sx={{ padding: "0.3rem 2.3rem", fontSize: "2.5rem", ":hover": {background: "transparent"} }}
           >
             <MeetingRoomOutlinedIcon fontSize="inherit" />
           </IconButton>
