@@ -30,7 +30,10 @@ const Login = ({ user, setUser }: LoginProps) => {
   }, [user]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    let value = event.target.value;
+    if(event.target.id === "username"){
+      value = value.toLowerCase();
+    }
     setUser({ ...user, [event.target.id]: value });
   };
 

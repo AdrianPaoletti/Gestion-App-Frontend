@@ -14,4 +14,10 @@ html {
 body {
   font-size: 1.6rem;
   box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern";
+}
+
+button{
+  color: black;
 }

@@ -96,6 +96,7 @@ const BlockedCard = ({ blockedDay, getBlockedDays }: BlockedCardProps) => {
             height: 150,
             padding: "2rem",
             borderRadius: "1rem",
+            outline: 0
           }}
         >
           <h3 id="modal-title">Delete blocked</h3>

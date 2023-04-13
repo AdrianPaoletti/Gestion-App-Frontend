@@ -389,15 +389,14 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
                 </p>
               </div>
               <div className="blocked-calendar__summary-block">
-                <h4>Notes: </h4>
-                {/* <textarea name="" id="" cols={1} rows={1}></textarea> */}
                 <TextField
-                  placeholder="Optional notes to add on the block"
+                  placeholder="Optional observations"
+                  label="Observations"
                   onChange={(e) => setObservations(e.target.value)}
                   rows={2}
                   multiline
                   fullWidth
-                  sx={{ marginLeft: "1rem", fontSize: "1.4rem" }}
+                  sx={{ fontSize: "1.4rem" }}
                 />
               </div>
               <button

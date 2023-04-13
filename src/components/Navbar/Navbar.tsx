@@ -56,7 +56,7 @@ const Navbar = ({ locationUrl, setLocationUrl }: NavbarProps) => {
             size="large"
             sx={{
               fontSize: "2.5rem",
-              padding: "1.3rem",
+              padding: "1.5rem",
               background:
                 locationUrl === "/blocked-calendar" ? "#8acac0" : "#fdce84",
               ":hover": { background: "#8acac0" },

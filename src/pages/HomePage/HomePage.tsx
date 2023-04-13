@@ -82,7 +82,6 @@ const HomePage = ({ blockedDays }: HomePageProps) => {
             page={actualPage}
             onChange={handleChange}
             size="large"
-            sx={{fontSize: "1.2rem"}}
           />
         </div>
       )}

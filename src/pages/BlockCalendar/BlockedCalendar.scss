@@ -252,6 +252,15 @@ div.rmdp-week-day {
   padding: 1.3rem 1.4rem;
 }
 
+.MuiInputBase-root.MuiOutlinedInput-root.Mui-focused
+  > .MuiOutlinedInput-notchedOutline {
+  border: 1px solid #020202cc;
+}
+
+.MuiFormLabel-root.MuiInputLabel-root.Mui-focused{
+  color: #000;
+}
+
 @media (max-width: 960px) {
   div.rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
     background-color: transparent;
