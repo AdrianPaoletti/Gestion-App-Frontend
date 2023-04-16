@@ -148,7 +148,7 @@ div.rmdp-day {
   background-color: $color-orange-light;
   width: 6rem;
   height: 6rem;
-  margin: 0 0.3rem;
+  margin: 0 0.25rem;
   &-hidden {
     border: none;
     background-color: transparent;
@@ -269,6 +269,9 @@ div.rmdp-week-day {
   div.rmdp-day {
     &:hover {
       background-color: $color-orange-light;
+    }
+    span{
+      font-size: 1.3rem;
     }
   }
 

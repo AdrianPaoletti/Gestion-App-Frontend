@@ -54,7 +54,7 @@ const BlockedCard = ({ blockedDay, getBlockedDays }: BlockedCardProps) => {
         <div className="blocked-card__information-unit">
           <h4>Observations:</h4>
           <p>
-            {blockedDay.observations}
+            {blockedDay.observations || "-"}
           </p>
         </div>
         <div className="blocked-card__information-unit blocked-card__information-unit--hours">
