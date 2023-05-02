@@ -11,25 +11,30 @@
   &__information {
     display: flex;
     flex-direction: column;
+    
   }
   &__information-unit {
     display: flex;
     margin: 0.4rem 0;
+    flex-wrap: wrap;
+    word-wrap: normal;
+    word-break: break-all; 
+    line-height: 1.7rem;
+    width: 90%;
 
     h4 {
-      font-size: $font-size-small;
+      font-size: 1.3rem;
     }
+
     p {
-      font-size: $font-size-small;
+      font-size: 1.3rem;
       padding-left: 0.5rem;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
     }
 
     &--hours {
       flex-direction: column;
-
+      // overflow-wrap: normal;
+      width: 100%;
       ul {
         display: flex;
         flex-wrap: wrap;
@@ -40,7 +45,7 @@
       li {
         padding: 0.5rem;
         margin: 0 0.5rem 0.5rem 0;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         background-color: $color-orange;
         border-radius: 1rem;
         overflow: hidden;
@@ -74,5 +79,9 @@
 
   &__modal-cancel {
     margin-left: 1rem;
+  }
+
+  .MuiBox-root{
+    border-color: transparent;
   }
 }

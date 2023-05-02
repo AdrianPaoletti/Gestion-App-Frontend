@@ -5,6 +5,7 @@ import {
   AccordionSummary,
   AccordionDetails,
   CircularProgress,
+  TextField,
 } from "@mui/material";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -16,6 +17,7 @@ import { BlockedDay } from "../../models/blockedDay";
 import Loader from "../../components/Loader/Loader";
 import { Calendar, DateObject } from "react-multi-date-picker";
 import "./BlockedCalendar.scss";
+import { MAX_LENGTH_HOURS } from "../../utils/constants";
 
 interface BlockedCalendarProps {
   setLocationUrl: React.Dispatch<React.SetStateAction<string>>;
@@ -29,6 +31,9 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isLoadingMonthly, setIsLoadingMonthly] = useState<boolean>(false);
   const [disabledDates, setDisabledDates] = useState<Array<Date>>();
+  const [disabledHours, setDisabledHours] = useState<Array<string>>([]);
+  const [blockedDays, setBlockedDays] = useState<Array<BlockedDay>>([]);
+  const [observations, setObservations] = useState<string>("");
   const navigate = useNavigate();
   const hoursToBlock: Array<string> = [
     "08:00",
@@ -43,9 +48,18 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
   useEffect(() => {
     getBlockedDaysMonthly();
   }, []);
+
   useEffect(() => {
-    console.log(disabledDates);
-  }, [disabledDates]);
+    setDisabledDates(() => {
+      const monthlyDates: Date[] = [];
+      blockedDays.map((blockedDay: BlockedDay) => {
+        if (blockedDay.hours.length === MAX_LENGTH_HOURS) {
+          blockedDay.dates.forEach((date) => monthlyDates.push(date));
+        }
+      });
+      return monthlyDates;
+    });
+  }, [blockedDays]);
 
   const getBlockedDaysMonthly = (date: DateObject | null = null) => {
     setIsLoadingMonthly(true);
@@ -57,13 +71,7 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
         },
       })
       .then(({ data: blockedDays }) => {
-        setDisabledDates(() => {
-          const monthlyDates: Date[] = [];
-          blockedDays.map((blockedDay: BlockedDay) =>
-            blockedDay.dates.forEach((date) => monthlyDates.push(date))
-          );
-          return monthlyDates;
-        });
+        setBlockedDays(blockedDays);
         setIsLoadingMonthly(false);
       })
       .catch((error) => {
@@ -72,7 +80,7 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
       });
   };
 
-  const formatDateSelection = (dates: Array<any>) => {
+  const formatDateSelection = (dates: Array<DateObject>) => {
     const datesFormatted = dates.map((date) => {
       const monthFormatted =
         date?.month.number > 9 ? date?.month.number : "0" + date?.month.number;
@@ -86,6 +94,82 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
       (a, b) => a.getTime() - b.getTime()
     );
     setSelectedDates(datesSorted);
+    return datesSorted;
+  };
+
+  const standarizedDate = (date: Date) =>
+    new Date(
+      Date.UTC(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        date.getHours(),
+        date.getMinutes(),
+        date.getSeconds()
+      )
+    );
+
+  const handleCalendarChange = (dates: Array<DateObject>) => {
+    const selectedDates = formatDateSelection(dates);
+    const matchedDates = blockedDays.filter((blockedDay) =>
+      blockedDay.dates.some(
+        (date) =>
+          selectedDates
+            .map((selectedDate) => selectedDate.getDate())
+            .indexOf(new Date(date).getDate()) > -1
+      )
+    );
+    if (selectedDates.length === 1) {
+      matchedDates.forEach((matchedDate) => {
+        setDisabledHours((prevDisabledHours) => {
+          return [...prevDisabledHours, ...matchedDate.hours];
+        });
+      });
+      return;
+    }
+    if (selectedDates.length > 1) {
+      let arrayOfDatesObject: Array<{ date: Date; hours: Array<string> }> = [];
+      matchedDates.forEach((matchedDate) => {
+        matchedDate.dates.forEach((date) => {
+          const indexDateObject = arrayOfDatesObject.findIndex(
+            (dateObject) => dateObject?.date === date
+          );
+          if (indexDateObject > -1) {
+            arrayOfDatesObject[indexDateObject] = {
+              ...arrayOfDatesObject[indexDateObject],
+              hours: [
+                ...arrayOfDatesObject[indexDateObject].hours,
+                ...matchedDate.hours,
+              ],
+            };
+            return;
+          }
+          return (arrayOfDatesObject = [
+            ...arrayOfDatesObject,
+            { date, hours: matchedDate.hours },
+          ]);
+        });
+      });
+      const datesThatMatched = arrayOfDatesObject.filter((dateObject) =>
+        selectedDates
+          .map((date) => standarizedDate(date).getDate())
+          .includes(new Date(dateObject.date).getDate())
+      );
+      const hourCounts: any = {};
+      datesThatMatched
+        .map((dateThatMatched) => dateThatMatched.hours)
+        .flat(1)
+        .forEach((hour) => {
+          hourCounts[hour] = (hourCounts[hour] || 0) + 1;
+        });
+
+      setDisabledHours(
+        Object.keys(hourCounts).filter(
+          (key) => hourCounts[key] >= selectedDates.length
+        )
+      );
+      return;
+    }
   };
 
   const handleHourClick = (hour: string) => {
@@ -119,18 +203,8 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
     const token = await JSON.parse(
       localStorage.getItem(process.env.REACT_APP_TOKEN as string) || ""
     );
-    const submitDates = selectedDates.map(
-      (selectedDate) =>
-        new Date(
-          Date.UTC(
-            selectedDate.getFullYear(),
-            selectedDate.getMonth(),
-            selectedDate.getDate(),
-            selectedDate.getHours(),
-            selectedDate.getMinutes(),
-            selectedDate.getSeconds()
-          )
-        )
+    const submitDates = selectedDates.map((selectedDate) =>
+      standarizedDate(selectedDate)
     );
     axios
       .post(
@@ -138,6 +212,7 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
         {
           dates: submitDates,
           hours: selectedHours,
+          observations
         },
         {
           headers: {
@@ -194,7 +269,9 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
                 disableYearPicker={true}
                 value={selectedDates}
                 minDate={new Date()}
-                onChange={(dates) => formatDateSelection(dates as DateObject[])}
+                onChange={(dates) =>
+                  handleCalendarChange(dates as DateObject[])
+                }
               />
               <button
                 className={` ${
@@ -240,11 +317,15 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
                   <li
                     className={`blocked-calendar__hour ${
                       (selectedHours as Array<string>).indexOf(hourToBlock) >
-                        -1 && !blockHoursFlag
+                        -1 &&
+                      disabledHours.indexOf(hourToBlock) === -1 &&
+                      !blockHoursFlag
                         ? "blocked-calendar__hour--selected"
                         : ""
                     } ${
-                      blockHoursFlag ? "blocked-calendar__hour--disabled" : ""
+                      blockHoursFlag || disabledHours.indexOf(hourToBlock) > -1
+                        ? "blocked-calendar__hour--disabled"
+                        : ""
                     } `}
                     key={index}
                     onClick={() =>
@@ -306,6 +387,17 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
                       (selectedHours.length - 1 === index ? "" : ", ")
                   )}
                 </p>
+              </div>
+              <div className="blocked-calendar__summary-block">
+                <TextField
+                  placeholder="Optional observations"
+                  label="Observations"
+                  onChange={(e) => setObservations(e.target.value)}
+                  rows={2}
+                  multiline
+                  fullWidth
+                  sx={{ fontSize: "1.4rem" }}
+                />
               </div>
               <button
                 className={`blocked-calendar__button blocked-calendar__button--submit`}

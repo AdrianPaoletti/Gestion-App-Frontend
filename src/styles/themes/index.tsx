@@ -21,5 +21,14 @@ export const defaultTheme: Theme = createTheme({
         },
       },
     },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          paddingRight: "1rem",
+          backgroundColor: "#fff",
+          fontSize: "1.3rem",
+        },
+      },
+    },
   },
 });

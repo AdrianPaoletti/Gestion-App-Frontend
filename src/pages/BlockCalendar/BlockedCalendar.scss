@@ -148,7 +148,7 @@ div.rmdp-day {
   background-color: $color-orange-light;
   width: 6rem;
   height: 6rem;
-  margin: 0 0.3rem;
+  margin: 0 0.25rem;
   &-hidden {
     border: none;
     background-color: transparent;
@@ -243,6 +243,24 @@ div.rmdp-week-day {
   -webkit-transform: none !important;
 }
 
+.MuiInputBase-input.MuiOutlinedInput-input{
+  font-size: 1.4rem;
+  line-height: 20px;
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root{
+  padding: 1.3rem 1.4rem;
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root.Mui-focused
+  > .MuiOutlinedInput-notchedOutline {
+  border: 1px solid #020202cc;
+}
+
+.MuiFormLabel-root.MuiInputLabel-root.Mui-focused{
+  color: #000;
+}
+
 @media (max-width: 960px) {
   div.rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
     background-color: transparent;
@@ -251,6 +269,9 @@ div.rmdp-week-day {
   div.rmdp-day {
     &:hover {
       background-color: $color-orange-light;
+    }
+    span{
+      font-size: 1.3rem;
     }
   }
 

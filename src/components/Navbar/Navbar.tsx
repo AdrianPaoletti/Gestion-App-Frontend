@@ -39,7 +39,7 @@ const Navbar = ({ locationUrl, setLocationUrl }: NavbarProps) => {
         >
           <IconButton
             color="inherit"
-            sx={{ padding: "0.2rem ", fontSize: "2.3rem" }}
+            sx={{ padding: "0.3rem 2.3rem", fontSize: "2.5rem", ":hover": {background: "transparent"} }}
           >
             <HomeWorkOutlinedIcon fontSize="inherit" />
           </IconButton>
@@ -55,7 +55,8 @@ const Navbar = ({ locationUrl, setLocationUrl }: NavbarProps) => {
           <IconButton
             size="large"
             sx={{
-              fontSize: "2.3rem",
+              fontSize: "2.5rem",
+              padding: "1.5rem",
               background:
                 locationUrl === "/blocked-calendar" ? "#8acac0" : "#fdce84",
               ":hover": { background: "#8acac0" },
@@ -74,7 +75,7 @@ const Navbar = ({ locationUrl, setLocationUrl }: NavbarProps) => {
         >
           <IconButton
             color="inherit"
-            sx={{ padding: "0.2rem", fontSize: "2.3rem" }}
+            sx={{ padding: "0.3rem 2.3rem", fontSize: "2.5rem", ":hover": {background: "transparent"} }}
           >
             <MeetingRoomOutlinedIcon fontSize="inherit" />
           </IconButton>
