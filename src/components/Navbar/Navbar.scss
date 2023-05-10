@@ -27,7 +27,7 @@
     align-items: center;
     color: $color-disabled;
     cursor: pointer;
-    
+
     &--selected {
       color: $color-green;
     }
@@ -43,7 +43,6 @@
       left: 50%;
       transform: translateX(-50%);
     }
-
     & p {
       font-size: 1rem;
     }
