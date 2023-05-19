@@ -212,7 +212,7 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
         {
           dates: submitDates,
           hours: selectedHours,
-          observations
+          observations,
         },
         {
           headers: {
@@ -329,7 +329,9 @@ const BlockedCalendar = ({ setLocationUrl }: BlockedCalendarProps) => {
                     } `}
                     key={index}
                     onClick={() =>
-                      !blockHoursFlag && handleHourClick(hourToBlock)
+                      !blockHoursFlag &&
+                      disabledHours.indexOf(hourToBlock) < 0 &&
+                      handleHourClick(hourToBlock)
                     }
                   >
                     {hourToBlock}
